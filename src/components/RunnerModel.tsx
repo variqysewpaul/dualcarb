@@ -157,7 +157,7 @@ export default function RunnerModel({
           color="#f97316"
         />
 
-        <EffectComposer disableNormalPass multisampling={0}>
+        <EffectComposer multisampling={0}>
           <Bloom
             intensity={0.8}
             luminanceThreshold={0.2}
