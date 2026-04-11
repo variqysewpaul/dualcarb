@@ -65,6 +65,7 @@ function RunnerMesh({ mouse }: { mouse: React.MutableRefObject<MouseState> }) {
           object={cloned.current}
           scale={1.0}
           position={[0, -1, 0]}
+          rotation={[0, Math.PI / 2.5, 0]} // Rotate to show side profile
           castShadow
           receiveShadow
         />
@@ -102,7 +103,8 @@ export default function RunnerModel({
     <div style={{ width: "100%", height: "100%", minHeight: compact ? "300px" : "600px" }}>
       <Canvas
         camera={{ position: [0, 1, compact ? 6 : 4.5], fov: compact ? 40 : 50 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
+        dpr={[1, 1.5]} // Cap resolution for performance
         shadows
       >
         {/* Lighting setup — orange key, yellow fill, white top */}
@@ -114,7 +116,7 @@ export default function RunnerModel({
           intensity={4}
           color="#f97316"
           castShadow
-          shadow-mapSize={[1024, 1024]}
+          shadow-mapSize={[512, 512]} // Reduced shadow map size
         />
         <spotLight
           position={[-6, 4, -4]}
@@ -151,15 +153,16 @@ export default function RunnerModel({
           scale={8}
           blur={2}
           far={3}
+          resolution={512} // Reduced shadow resolution
           color="#f97316"
         />
 
-        <EffectComposer>
+        <EffectComposer disableNormalPass multisampling={0}>
           <Bloom
             intensity={0.8}
             luminanceThreshold={0.2}
             luminanceSmoothing={0.9}
-            mipmapBlur
+            // Removed mipmapBlur as it is extremely heavy on GPUs
           />
         </EffectComposer>
       </Canvas>
