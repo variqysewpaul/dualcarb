@@ -140,7 +140,8 @@ export default function FloatingSachet({ compact = false }: { compact?: boolean 
     >
       <Canvas
         camera={{ position: [0, 0, compact ? 10 : 8], fov: compact ? 35 : 42 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: false, powerPreference: "high-performance", alpha: true }}
+        dpr={[1, 1.5]}
       >
         <ambientLight intensity={0.7} />
         <spotLight position={[10, 10, 10]} angle={0.2} penumbra={0.8} intensity={5} color="#f97316" castShadow />
@@ -157,15 +158,16 @@ export default function FloatingSachet({ compact = false }: { compact?: boolean 
           blur={2.5}
           far={4}
           color="#f97316"
+          frames={1} // Only render shadow once to save massive GPU cycles
+          resolution={512}
         />
 
         {/* Bloom post-processing — makes orange edges glow */}
-        <EffectComposer>
+        <EffectComposer multisampling={0}>
           <Bloom
             intensity={0.6}
             luminanceThreshold={0.3}
             luminanceSmoothing={0.9}
-            mipmapBlur
           />
         </EffectComposer>
       </Canvas>
