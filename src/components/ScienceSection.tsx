@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Zap, Activity } from "lucide-react";
 
 // ── Word reveal reused from Hero ────────────────────────────
@@ -26,6 +26,45 @@ function WordReveal({
         {text}
       </motion.span>
     </span>
+  );
+}
+
+// ── Count-up animation (Awwwards data sections standard) ──────
+function useCountUp(target: number, duration: number = 1.8) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const stepTime = (duration * 1000) / target;
+    const timer = setInterval(() => {
+      start += 1;
+      setCount(start);
+      if (start >= target) clearInterval(timer);
+    }, stepTime);
+    return () => clearInterval(timer);
+  }, [inView, target, duration]);
+
+  return { count, ref };
+}
+
+function AnimatedCounter({ target, duration = 1.8, prefix = "+", suffix = "%" }: { target: number; duration?: number; prefix?: string; suffix?: string }) {
+  const { count, ref } = useCountUp(target, duration);
+  return (
+    <div ref={ref}
+      style={{
+        fontFamily: "var(--font-display)",
+        fontWeight: 900,
+        fontSize: "clamp(4rem, 10vw, 9rem)",
+        lineHeight: 0.85,
+        letterSpacing: "-0.04em",
+        color: "#f97316",
+      }}
+    >
+      {prefix}{count}{suffix}
+    </div>
   );
 }
 
@@ -203,18 +242,8 @@ export default function ScienceSection() {
               transition={{ duration: 0.7 }}
               style={{ marginBottom: "3rem" }}
             >
-              <div
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontWeight: 900,
-                  fontSize: "clamp(4rem, 10vw, 9rem)",
-                  lineHeight: 0.85,
-                  letterSpacing: "-0.04em",
-                  color: "#f97316",
-                }}
-              >
-                +50%
-              </div>
+              {/* Animated count-up stat */}
+              <AnimatedCounter target={50} />
               <div
                 style={{
                   fontFamily: "var(--font-display)",

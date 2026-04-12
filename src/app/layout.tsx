@@ -3,6 +3,8 @@ import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import NoiseOverlay from "@/components/NoiseOverlay";
+import LoadingCurtain from "@/components/LoadingCurtain";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({
@@ -34,6 +36,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} ${mono.variable} antialiased bg-black text-white selection:bg-orange-500 selection:text-black`}
       >
+        {/* Load curtain — wipes upward on first visit */}
+        <LoadingCurtain />
+        {/* Orange scroll progress line — pinned to top */}
+        <ScrollProgress />
         {/* Global overlays */}
         <CustomCursor />
         <NoiseOverlay />
