@@ -9,15 +9,18 @@ import { motion, AnimatePresence } from "framer-motion";
  */
 export default function LoadingCurtain() {
   const [done, setDone] = useState(false);
+  const [unmounted, setUnmounted] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const t = setTimeout(() => setDone(true), 1600);
-    return () => clearTimeout(t);
+    // Start exit at 1.6s, fully remove from DOM at 2.8s (after animation completes)
+    const t1 = setTimeout(() => setDone(true), 1600);
+    const t2 = setTimeout(() => setUnmounted(true), 2900);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted || unmounted) return null;
 
   return (
     <AnimatePresence>
@@ -37,6 +40,7 @@ export default function LoadingCurtain() {
             alignItems: "center",
             justifyContent: "center",
             gap: "1rem",
+            pointerEvents: done ? "none" : "all", // Stop blocking mouse once exiting
           }}
         >
           {/* Brand logo in the curtain */}

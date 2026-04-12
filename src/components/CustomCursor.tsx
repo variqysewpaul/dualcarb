@@ -20,9 +20,13 @@ export default function CustomCursor() {
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
 
-      // Dot follows instantly
+      // Reveal on first move (they start hidden via CSS opacity:0)
       if (dotRef.current) {
+        dotRef.current.style.opacity = "1";
         dotRef.current.style.transform = `translate(${e.clientX - 3}px, ${e.clientY - 3}px)`;
+      }
+      if (ringRef.current) {
+        ringRef.current.style.opacity = "1";
       }
     };
 
