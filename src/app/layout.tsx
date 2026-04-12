@@ -36,8 +36,6 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} ${mono.variable} antialiased bg-black text-white selection:bg-orange-500 selection:text-black`}
       >
-        {/* Load curtain — wipes upward on first visit */}
-        <LoadingCurtain />
         {/* Orange scroll progress line — pinned to top */}
         <ScrollProgress />
         {/* Global overlays */}
