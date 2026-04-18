@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import RunnerModel from "./RunnerModel";
+import MagneticButton from "./MagneticButton";
 
 // ── Clip-reveal word animation ─────────────────────────────────
 function WordReveal({
@@ -121,22 +122,22 @@ export default function Hero() {
           }}
         >
           <div>
-            <WordReveal text="Elite" delay={0.2} />
+            <WordReveal text="Elite" delay={0.1} />
           </div>
           <div>
-            <WordReveal text="Fueling." className="text-outline" delay={0.35} />
+            <WordReveal text="Fueling." className="text-outline" delay={0.2} />
           </div>
           <div style={{ display: "block" }}>
             <WordReveal
               text="Without"
-              delay={0.5}
+              delay={0.3}
             />
           </div>
           <div>
-            <WordReveal text="Elite" className="text-gradient" delay={0.65} />
+            <WordReveal text="Elite" className="text-gradient" delay={0.4} />
           </div>
           <div>
-            <WordReveal text="Pricing." delay={0.8} />
+            <WordReveal text="Pricing." delay={0.5} />
           </div>
         </h1>
 
@@ -162,76 +163,77 @@ export default function Hero() {
           stomach distress, for half the price of imported brands.
         </motion.p>
 
-        {/* CTA Row */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.3 }}
           className="flex flex-wrap gap-4 mt-10"
         >
-          <a
-            href="#waitlist"
-            data-cursor-hover
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.6rem",
-              padding: "0.85rem 2.2rem",
-              background: "#f97316",
-              color: "#000",
-              fontFamily: "var(--font-display)",
-              fontWeight: 800,
-              fontSize: "0.8rem",
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              borderRadius: "0",
-              textDecoration: "none",
-              transition: "background 0.2s ease, transform 0.2s ease",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "#eab308";
-              (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = "#f97316";
-              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-            }}
-          >
-            Join Waitlist
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
-          <a
-            href="#science"
-            data-cursor-hover
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              padding: "0.85rem 2.2rem",
-              border: "1px solid rgba(240,236,228,0.18)",
-              color: "rgba(240,236,228,0.7)",
-              fontFamily: "var(--font-display)",
-              fontWeight: 700,
-              fontSize: "0.8rem",
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              borderRadius: "0",
-              textDecoration: "none",
-              background: "transparent",
-              transition: "border-color 0.2s, color 0.2s",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(249,115,22,0.6)";
-              (e.currentTarget as HTMLElement).style.color = "#f97316";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.borderColor = "rgba(240,236,228,0.18)";
-              (e.currentTarget as HTMLElement).style.color = "rgba(240,236,228,0.7)";
-            }}
-          >
-            The Science
-          </a>
+          <MagneticButton>
+            <a
+              href="#waitlist"
+              data-cursor-hover
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.6rem",
+                padding: "0.85rem 2.2rem",
+                background: "#f97316",
+                color: "#000",
+                fontFamily: "var(--font-display)",
+                fontWeight: 800,
+                fontSize: "0.8rem",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                borderRadius: "0",
+                textDecoration: "none",
+                transition: "background 0.2s ease, transform 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "#eab308";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "#f97316";
+              }}
+            >
+              Join Waitlist
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+          </MagneticButton>
+          <MagneticButton>
+            <a
+              href="#science"
+              data-cursor-hover
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                padding: "0.85rem 2.2rem",
+                border: "1px solid rgba(240,236,228,0.18)",
+                color: "rgba(240,236,228,0.7)",
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                fontSize: "0.8rem",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                borderRadius: "0",
+                textDecoration: "none",
+                background: "transparent",
+                transition: "border-color 0.2s, color 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(249,115,22,0.6)";
+                (e.currentTarget as HTMLElement).style.color = "#f97316";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(240,236,228,0.18)";
+                (e.currentTarget as HTMLElement).style.color = "rgba(240,236,228,0.7)";
+              }}
+            >
+              The Science
+            </a>
+          </MagneticButton>
         </motion.div>
 
         {/* Stats bar — bottom editorial */}

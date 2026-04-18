@@ -3,6 +3,8 @@ import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import NoiseOverlay from "@/components/NoiseOverlay";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import Preloader from "@/components/Preloader";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({
@@ -34,10 +36,13 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} ${mono.variable} antialiased bg-black text-white selection:bg-orange-500 selection:text-black`}
       >
-        {/* Global overlays */}
-        <CustomCursor />
-        <NoiseOverlay />
-        {children}
+        <SmoothScrollProvider>
+          <Preloader />
+          {/* Global overlays */}
+          <CustomCursor />
+          <NoiseOverlay />
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );

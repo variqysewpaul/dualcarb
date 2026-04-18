@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { useScroll } from "framer-motion";
 import { useGLTF, Environment, ContactShadows, Float } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
@@ -18,6 +19,7 @@ function RunnerMesh({ mouse }: { mouse: React.MutableRefObject<MouseState> }) {
   const { scene } = useGLTF("/runner.glb");
   const groupRef = useRef<THREE.Group>(null);
   const lerpedRot = useRef({ x: 0, y: 0 });
+  const { scrollYProgress } = useScroll();
 
   // Clone the scene so multiple instances don't share state
   const cloned = useRef<THREE.Group | null>(null);
@@ -56,6 +58,9 @@ function RunnerMesh({ mouse }: { mouse: React.MutableRefObject<MouseState> }) {
     lerpedRot.current.y += (mouse.current.x * 0.4 - lerpedRot.current.y) * 0.04;
     groupRef.current.rotation.x = lerpedRot.current.x;
     groupRef.current.rotation.y = lerpedRot.current.y;
+    
+    // Add vertical parallax based on scroll
+    groupRef.current.position.y = scrollYProgress.get() * -2;
   });
 
   return (
