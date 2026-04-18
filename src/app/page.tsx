@@ -221,12 +221,9 @@ function Navbar() {
 }
 
 // ── Product card ───────────────────────────────────────────────
-function ProductCard({
-  num,
-  name,
-  badge,
   badgeColor,
   description,
+  textureUrl,
   delay = 0,
 }: {
   num: string;
@@ -234,6 +231,7 @@ function ProductCard({
   badge: string;
   badgeColor: string;
   description: string;
+  textureUrl?: string;
   delay?: number;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -281,7 +279,7 @@ function ProductCard({
             background: `radial-gradient(circle at 50% 60%, ${badgeColor}18 0%, transparent 70%)`,
           }}
         />
-        <FloatingSachet compact />
+        <FloatingSachet compact textureUrl={textureUrl} />
       </div>
 
       {/* Card body */}
@@ -399,6 +397,7 @@ export default function Home() {
               badge="Clean Energy"
               badgeColor="#f97316"
               description="The pure performance base. 90g of carbs per serving, loaded with vital electrolytes. Drink it deep into ultra-endurance efforts without the jitters."
+              textureUrl="/images/sachet-stim-free.jpg"
               delay={0}
             />
             <ProductCard

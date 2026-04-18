@@ -420,6 +420,104 @@ export default function ScienceSection() {
           </div>
         </motion.div>
       </div>
+
+      {/* ── Product Anatomy (New Design) ───────────────────── */}
+      <div
+        style={{
+          padding: "clamp(4rem, 8vw, 8rem) clamp(1.5rem, 6vw, 5rem)",
+          background: "rgba(255,255,255,0.01)",
+          borderTop: "1px solid rgba(255,255,255,0.06)",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "4rem",
+            alignItems: "center",
+          }}
+        >
+          {/* Label + Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            style={{ position: "relative" }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: "-10%",
+                left: "-5%",
+                width: "110%",
+                height: "110%",
+                background: "radial-gradient(circle at center, #f9731610 0%, transparent 70%)",
+                filter: "blur(40px)",
+                zIndex: -1,
+              }}
+            />
+            <img
+              src="/images/sachet-stim-free.jpg"
+              alt="DualCarb Stim-Free Sachet Design"
+              style={{
+                width: "100%",
+                height: "auto",
+                border: "1px solid rgba(255,255,255,0.08)",
+                boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+              }}
+            />
+          </motion.div>
+
+          {/* Breakdown Text */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3
+                className="text-display"
+                style={{ fontSize: "2.5rem", marginBottom: "1.5rem" }}
+              >
+                Engineered <br /> <span className="text-gradient">Precision.</span>
+              </h3>
+              <p style={{ color: "rgba(240,236,228,0.45)", lineHeight: 1.8, marginBottom: "2rem" }}>
+                Every element of the DualCarb sachet is designed for high-intensity endurance. From the 30g carb dosing to the high-contrast typography, we ensure you can read and access your fuel even at your physical limit.
+              </p>
+            </motion.div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
+              {[
+                { label: "Carbs", val: "30g" },
+                { label: "Caffeine", val: "0mg" },
+                { label: "Ratio", val: "2:1" },
+                { label: "Design", val: "V2.0" },
+              ].map((pill, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  style={{
+                    padding: "1rem",
+                    border: "1px solid rgba(255,255,255,0.05)",
+                    background: "rgba(255,255,255,0.02)",
+                    textAlign: "center",
+                  }}
+                >
+                  <div style={{ fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.15em", color: "rgba(240,236,228,0.25)", marginBottom: "0.3rem" }}>{pill.label}</div>
+                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, color: "#f97316" }}>{pill.val}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

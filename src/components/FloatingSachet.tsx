@@ -8,7 +8,7 @@ import {
   ContactShadows,
   Text,
   Line,
-  MeshTransmissionMaterial,
+  useTexture,
 } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
@@ -19,7 +19,14 @@ interface MouseState {
   y: number;
 }
 
-function SachetModel({ mouse }: { mouse: React.MutableRefObject<MouseState> }) {
+function SachetModel({
+  mouse,
+  textureUrl,
+}: {
+  mouse: React.MutableRefObject<MouseState>;
+  textureUrl?: string;
+}) {
+  const texture = textureUrl ? useTexture(textureUrl) : null;
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Mesh>(null);
   const lightRef = useRef<THREE.PointLight>(null);
@@ -58,50 +65,97 @@ function SachetModel({ mouse }: { mouse: React.MutableRefObject<MouseState> }) {
 
       <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.8}>
         <mesh ref={meshRef} castShadow>
-          {/* Main Body */}
           <boxGeometry args={[2.8, 4.5, 0.35]} />
-          <meshStandardMaterial
-            color="#0a0a0a"
-            roughness={0.25}
-            metalness={0.85}
-            envMapIntensity={3}
-          />
+          
+          {/* Multi-material: Front face gets texture, others stay dark metallic */}
+          {texture ? (
+            <>
+              <meshStandardMaterial
+                attach="material-0" // Right
+                color="#0a0a0a"
+                roughness={0.25}
+                metalness={0.85}
+              />
+              <meshStandardMaterial
+                attach="material-1" // Left
+                color="#0a0a0a"
+                roughness={0.25}
+                metalness={0.85}
+              />
+              <meshStandardMaterial
+                attach="material-2" // Top
+                color="#0a0a0a"
+                roughness={0.25}
+                metalness={0.85}
+              />
+              <meshStandardMaterial
+                attach="material-3" // Bottom
+                color="#0a0a0a"
+                roughness={0.25}
+                metalness={0.85}
+              />
+              <meshStandardMaterial
+                attach="material-4" // Front
+                map={texture}
+                roughness={0.3}
+                metalness={0.6}
+                envMapIntensity={2}
+              />
+              <meshStandardMaterial
+                attach="material-5" // Back
+                color="#0a0a0a"
+                roughness={0.25}
+                metalness={0.85}
+              />
+            </>
+          ) : (
+            <meshStandardMaterial
+              color="#0a0a0a"
+              roughness={0.25}
+              metalness={0.85}
+              envMapIntensity={3}
+            />
+          )}
 
-          {/* Brand Name Text */}
-          <Text
-            position={[-0.1, 1.3, 0.21]}
-            fontSize={0.45}
-            color="#eab308"
-            font="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NJtEtq.woff"
-            anchorX="center"
-            anchorY="middle"
-            fontStyle="italic"
-          >
-            DualCarb
-          </Text>
-          <Text
-            position={[0, 0.9, 0.21]}
-            fontSize={0.35}
-            color="#f97316"
-            font="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NJtEtq.woff"
-            anchorX="center"
-            anchorY="middle"
-            fontStyle="italic"
-            letterSpacing={0.1}
-          >
-            ENDURANCE
-          </Text>
+          {!texture && (
+            <>
+              {/* Brand Name Text */}
+              <Text
+                position={[-0.1, 1.3, 0.21]}
+                fontSize={0.45}
+                color="#eab308"
+                font="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NJtEtq.woff"
+                anchorX="center"
+                anchorY="middle"
+                fontStyle="italic"
+              >
+                DualCarb
+              </Text>
+              <Text
+                position={[0, 0.9, 0.21]}
+                fontSize={0.35}
+                color="#f97316"
+                font="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NJtEtq.woff"
+                anchorX="center"
+                anchorY="middle"
+                fontStyle="italic"
+                letterSpacing={0.1}
+              >
+                ENDURANCE
+              </Text>
 
-          {/* Diagonal Graphic Accents */}
-          <Line points={[[-1.4, -0.2, 0.21], [1.4, 0.5, 0.21]]} color="#f97316" lineWidth={5} />
-          <Line points={[[-1.4, -0.4, 0.21], [1.4, 0.3, 0.21]]} color="#eab308" lineWidth={2} />
+              {/* Diagonal Graphic Accents */}
+              <Line points={[[-1.4, -0.2, 0.21], [1.4, 0.5, 0.21]]} color="#f97316" lineWidth={5} />
+              <Line points={[[-1.4, -0.4, 0.21], [1.4, 0.3, 0.21]]} color="#eab308" lineWidth={2} />
 
-          {/* Stats */}
-          <Text position={[-0.6, -1, 0.21]} fontSize={0.5} color="#f97316" font="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NJtEtq.woff" anchorX="center" anchorY="middle" fontStyle="italic">30g</Text>
-          <Text position={[-0.6, -1.4, 0.21]} fontSize={0.15} color="#ffffff" anchorX="center" anchorY="middle">CARBS</Text>
-          <Text position={[-0.6, -1.6, 0.21]} fontSize={0.1} color="#a1a1aa" anchorX="center" anchorY="middle">PER SERVING</Text>
-          <Text position={[0.6, -1.1, 0.21]} fontSize={0.3} color="#ffffff" font="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NJtEtq.woff" anchorX="center" anchorY="middle" fontStyle="italic">2:1</Text>
-          <Text position={[0.6, -1.4, 0.21]} fontSize={0.12} color="#a1a1aa" anchorX="center" anchorY="middle" maxWidth={1} textAlign="center">MALTODEXTRIN TO FRUCTOSE RATIO</Text>
+              {/* Stats */}
+              <Text position={[-0.6, -1, 0.21]} fontSize={0.5} color="#f97316" font="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NJtEtq.woff" anchorX="center" anchorY="middle" fontStyle="italic">30g</Text>
+              <Text position={[-0.6, -1.4, 0.21]} fontSize={0.15} color="#ffffff" anchorX="center" anchorY="middle">CARBS</Text>
+              <Text position={[-0.6, -1.6, 0.21]} fontSize={0.1} color="#a1a1aa" anchorX="center" anchorY="middle">PER SERVING</Text>
+              <Text position={[0.6, -1.1, 0.21]} fontSize={0.3} color="#ffffff" font="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NJtEtq.woff" anchorX="center" anchorY="middle" fontStyle="italic">2:1</Text>
+              <Text position={[0.6, -1.4, 0.21]} fontSize={0.12} color="#a1a1aa" anchorX="center" anchorY="middle" maxWidth={1} textAlign="center">MALTODEXTRIN TO FRUCTOSE RATIO</Text>
+            </>
+          )}
 
           {/* Seals */}
           <mesh position={[0, 2.35, 0]}>
@@ -118,7 +172,13 @@ function SachetModel({ mouse }: { mouse: React.MutableRefObject<MouseState> }) {
   );
 }
 
-export default function FloatingSachet({ compact = false }: { compact?: boolean }) {
+export default function FloatingSachet({
+  compact = false,
+  textureUrl,
+}: {
+  compact?: boolean;
+  textureUrl?: string;
+}) {
   const mouse = useRef<MouseState>({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -147,7 +207,7 @@ export default function FloatingSachet({ compact = false }: { compact?: boolean 
         <spotLight position={[-8, -8, -5]} angle={0.25} penumbra={1} intensity={3.5} color="#eab308" />
         <spotLight position={[0, 8, 6]} angle={0.3} penumbra={1} intensity={2.5} color="#ffffff" />
 
-        <SachetModel mouse={mouse} />
+        <SachetModel mouse={mouse} textureUrl={textureUrl} />
 
         <Environment preset="city" />
         <ContactShadows
