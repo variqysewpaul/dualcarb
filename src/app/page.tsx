@@ -221,6 +221,10 @@ function Navbar() {
 }
 
 // ── Product card ───────────────────────────────────────────────
+function ProductCard({
+  num,
+  name,
+  badge,
   badgeColor,
   description,
   textureUrl,
