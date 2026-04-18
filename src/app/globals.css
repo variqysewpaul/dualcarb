@@ -164,7 +164,7 @@ body {
 .text-display {
   font-family: var(--font-display);
   font-weight: 900;
-  line-height: 0.9;
+  line-height: 0.96;
   letter-spacing: -0.04em;
   text-transform: uppercase;
 }

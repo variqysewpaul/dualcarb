@@ -18,7 +18,7 @@ interface MouseState {
 function RunnerMesh({ mouse }: { mouse: React.MutableRefObject<MouseState> }) {
   const { scene } = useGLTF("/runner.glb");
   const groupRef = useRef<THREE.Group>(null);
-  const lerpedRot = useRef({ x: 0, y: 0 });
+  const lerpedRot = useRef({ x: 0, y: Math.PI / 2 }); // Initial side profile
   const { scrollYProgress } = useScroll();
 
   // Clone the scene so multiple instances don't share state
@@ -54,8 +54,9 @@ function RunnerMesh({ mouse }: { mouse: React.MutableRefObject<MouseState> }) {
 
   useFrame(() => {
     if (!groupRef.current) return;
-    lerpedRot.current.x += (mouse.current.y * 0.2 - lerpedRot.current.x) * 0.04;
-    lerpedRot.current.y += (mouse.current.x * 0.4 - lerpedRot.current.y) * 0.04;
+    // Enhanced interactivity: wider range and smoother following
+    lerpedRot.current.x += (mouse.current.y * 0.3 - lerpedRot.current.x) * 0.05;
+    lerpedRot.current.y += (Math.PI / 2 + mouse.current.x * 0.6 - lerpedRot.current.y) * 0.05;
     groupRef.current.rotation.x = lerpedRot.current.x;
     groupRef.current.rotation.y = lerpedRot.current.y;
     
@@ -65,11 +66,11 @@ function RunnerMesh({ mouse }: { mouse: React.MutableRefObject<MouseState> }) {
 
   return (
     <group ref={groupRef}>
-      <Float speed={1.2} rotationIntensity={0.08} floatIntensity={0.5}>
+      <Float speed={1.5} rotationIntensity={0.25} floatIntensity={0.8}>
         <primitive
           object={cloned.current}
-          scale={1.0}
-          position={[0, -1, 0]}
+          scale={1.25}
+          position={[0, -1.2, 0]}
           castShadow
           receiveShadow
         />
@@ -151,11 +152,11 @@ export default function RunnerModel({
         <Environment preset="city" />
 
         <ContactShadows
-          position={[0, -1.4, 0]}
-          opacity={0.5}
-          scale={8}
-          blur={2}
-          far={3}
+          position={[0, -1.6, 0]}
+          opacity={0.4}
+          scale={12}
+          blur={2.5}
+          far={4}
           color="#f97316"
         />
 

@@ -37,8 +37,8 @@ export default function Hero() {
   });
 
   // Parallax the 3D canvas upward as you scroll away
-  const sachetY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
+  const sachetY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
 
   return (
     <section
@@ -86,7 +86,7 @@ export default function Hero() {
       {/* ── Main text content ────────────────────────────────── */}
       <motion.div
         style={{ y: textY }}
-        className="relative z-10 w-full px-6 md:px-14 lg:px-20 pt-28 pb-12 flex flex-col justify-center"
+        className="relative z-10 w-full px-6 md:px-14 lg:px-20 pt-32 pb-24 md:pb-16 flex flex-col justify-center min-h-screen"
       >
         {/* Pre-label */}
         <motion.div
@@ -117,8 +117,8 @@ export default function Hero() {
         <h1
           className="text-display"
           style={{
-            fontSize: "clamp(3.8rem, 10vw, 11rem)",
-            maxWidth: "10ch",
+            fontSize: "clamp(3.2rem, 9vw, 11rem)",
+            maxWidth: "12ch",
           }}
         >
           <div>
