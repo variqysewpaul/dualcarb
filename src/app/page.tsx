@@ -141,12 +141,10 @@ function Navbar() {
 
       {/* Mobile hamburger */}
       <button
-        className="md:hidden"
+        className="flex flex-col md:hidden"
         data-cursor-hover
         onClick={() => setMenuOpen(!menuOpen)}
         style={{
-          display: "flex",
-          flexDirection: "column",
           gap: "5px",
           background: "none",
           border: "none",

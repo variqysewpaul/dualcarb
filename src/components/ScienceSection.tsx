@@ -1,8 +1,41 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Zap, Activity } from "lucide-react";
+
+// ── Animated counter ────────────────────────────────────────
+function AnimatedCounter({
+  target,
+  duration = 2000,
+  prefix = "",
+  suffix = "",
+}: {
+  target: number;
+  duration?: number;
+  prefix?: string;
+  suffix?: string;
+}) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (!isInView) return;
+    let startTime: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [isInView, target, duration]);
+
+  return <span ref={ref}>{prefix}{count}{suffix}</span>;
+}
 
 // ── Word reveal reused from Hero ────────────────────────────
 function WordReveal({
@@ -213,7 +246,7 @@ export default function ScienceSection() {
                   color: "#f97316",
                 }}
               >
-                +50%
+                <AnimatedCounter target={50} prefix="+" suffix="%" />
               </div>
               <div
                 style={{
