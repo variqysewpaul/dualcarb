@@ -236,33 +236,8 @@ export default function ScienceSection() {
               transition={{ duration: 0.7 }}
               style={{ marginBottom: "3rem" }}
             >
-              <div
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontWeight: 900,
-                  fontSize: "clamp(4rem, 10vw, 9rem)",
-                  lineHeight: 0.85,
-                  letterSpacing: "-0.04em",
-                  color: "#f97316",
-                }}
-              >
-                <AnimatedCounter target={50} prefix="+" suffix="%" />
-              </div>
-              <div
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontWeight: 900,
-                  fontSize: "clamp(1.4rem, 2.5vw, 2rem)",
-                  color: "rgba(240,236,228,0.6)",
-                  marginTop: "0.5rem",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                More energy per hour
-              </div>
               <p
                 style={{
-                  marginTop: "1rem",
                   fontSize: "0.85rem",
                   color: "rgba(240,236,228,0.35)",
                   lineHeight: 1.7,
@@ -285,7 +260,7 @@ export default function ScienceSection() {
                 icon: <Zap size={18} />,
                 color: "#eab308",
                 heading: "SGLT1 + GLUT5",
-                body: "Standard gels saturate the SGLT1 transporter at 60g/hr. Our 2:1 ratio recruits GLUT5 via fructose, pushing total absorption to ~90g/hr without competition between pathways.",
+                body: "Standard gels saturate the SGLT1 transporter at 60g/hr. Our proprietary dual-carb formula recruits GLUT5, pushing total absorption to ~90g/hr without competition between pathways.",
               },
               {
                 icon: <Activity size={18} />,
@@ -416,7 +391,7 @@ export default function ScienceSection() {
                   { brand: "Maurten Gel 100", carb: "25g", system: "Dual carb hydrogel", price: "R70–R100", highlight: false },
                   { brand: "GU Energy Gel", carb: "23g", system: "Glucose + Fructose", price: "R45–R60", highlight: false },
                   { brand: "SiS GO Gel", carb: "22g", system: "Isotonic Maltodextrin", price: "R40–R55", highlight: false },
-                  { brand: "DualCarb Endurance", carb: "30g", system: "2:1 Maltodextrin:Fructose", price: "R25–R30", highlight: true },
+                  { brand: "DualCarb Endurance", carb: "30g", system: "Proprietary Dual-Carb Blend", price: "R25–R30", highlight: true },
                 ].map((row, i) => (
                   <tr
                     key={i}
@@ -527,7 +502,7 @@ export default function ScienceSection() {
               {[
                 { label: "Carbs", val: "30g" },
                 { label: "Caffeine", val: "0mg" },
-                { label: "Ratio", val: "2:1" },
+                { label: "System", val: "DC²" },
                 { label: "Design", val: "V2.0" },
               ].map((pill, i) => (
                 <motion.div

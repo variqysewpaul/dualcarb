@@ -4,11 +4,11 @@ export default function MarqueeStrip() {
   const items = [
     "DUAL CARB",
     "90G / HR",
-    "2:1 RATIO",
+    "DUAL-CARB FORMULA",
     "MADE IN SOUTH AFRICA",
     "ENDURANCE",
     "ZERO GI DISTRESS",
-    "MALTODEXTRIN + FRUCTOSE",
+    "ADVANCED ABSORPTION",
     "R25 PER SERVING",
     "PERFORMANCE FUEL",
   ];

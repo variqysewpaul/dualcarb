@@ -157,7 +157,7 @@ export default function Hero() {
           }}
         >
           DualCarb uses a science-backed{" "}
-          <span style={{ color: "#f97316" }}>2:1 Maltodextrin:Fructose</span> system
+          <span style={{ color: "#f97316" }}>DualCarb Endurance™</span> formula
           to unlock dual intestinal transporters — up to{" "}
           <span style={{ color: "#eab308" }}>90g of carbs /hr</span> with zero
           stomach distress, for half the price of imported brands.
@@ -171,7 +171,7 @@ export default function Hero() {
         >
           <MagneticButton>
             <a
-              href="#waitlist"
+              href="#shop"
               data-cursor-hover
               style={{
                 display: "inline-flex",
@@ -196,7 +196,7 @@ export default function Hero() {
                 (e.currentTarget as HTMLElement).style.background = "#f97316";
               }}
             >
-              Join Waitlist
+              Shop Now
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -247,7 +247,7 @@ export default function Hero() {
             { value: "30g", label: "Per Serving" },
             { value: "~R25", label: "Target Price" },
             { value: "90g/hr", label: "Max Absorption" },
-            { value: "2:1", label: "Carb Ratio" },
+            { value: "DC²", label: "Dual-Carb System" },
           ].map((stat, i) => (
             <div key={i} className="flex items-center gap-6">
               <div>

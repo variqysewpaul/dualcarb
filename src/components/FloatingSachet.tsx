@@ -146,8 +146,8 @@ function ProceduralSachetModel({
           <Text position={[-0.6, -1, 0.21]} fontSize={0.5} color="#f97316" font="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NJtEtq.woff" anchorX="center" anchorY="middle" fontStyle="italic">30g</Text>
           <Text position={[-0.6, -1.4, 0.21]} fontSize={0.15} color="#ffffff" anchorX="center" anchorY="middle">CARBS</Text>
           <Text position={[-0.6, -1.6, 0.21]} fontSize={0.1} color="#a1a1aa" anchorX="center" anchorY="middle">PER SERVING</Text>
-          <Text position={[0.6, -1.1, 0.21]} fontSize={0.3} color="#ffffff" font="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NJtEtq.woff" anchorX="center" anchorY="middle" fontStyle="italic">2:1</Text>
-          <Text position={[0.6, -1.4, 0.21]} fontSize={0.12} color="#a1a1aa" anchorX="center" anchorY="middle" maxWidth={1} textAlign="center">MALTODEXTRIN TO FRUCTOSE RATIO</Text>
+          <Text position={[0.6, -1.1, 0.21]} fontSize={0.3} color="#ffffff" font="https://fonts.gstatic.com/s/outfit/v11/QGYyz_MVcBeNP4NJtEtq.woff" anchorX="center" anchorY="middle" fontStyle="italic">DC²</Text>
+          <Text position={[0.6, -1.4, 0.21]} fontSize={0.12} color="#a1a1aa" anchorX="center" anchorY="middle" maxWidth={1} textAlign="center">DUAL-CARB SYSTEM</Text>
 
           {/* Seals */}
           <mesh position={[0, 2.35, 0]}>

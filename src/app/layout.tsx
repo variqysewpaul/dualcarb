@@ -17,7 +17,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", weigh
 export const metadata: Metadata = {
   title: "DualCarb | Elite Performance Fuel",
   description:
-    "Science-backed 2:1 carbohydrate performance fuel. Up to 90g/hr absorption, zero GI distress — made in South Africa for a fraction of the import price.",
+    "Science-backed dual-carb performance fuel. Up to 90g/hr absorption, zero GI distress — made in South Africa for a fraction of the import price.",
   keywords: ["endurance fuel", "carbohydrate gel", "running nutrition", "South Africa", "DualCarb"],
   openGraph: {
     title: "DualCarb | Elite Performance Fuel",

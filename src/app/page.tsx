@@ -4,9 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Hero from "@/components/Hero";
 import ScienceSection from "@/components/ScienceSection";
-import WaitlistForm from "@/components/WaitlistForm";
 import SectionBreak from "@/components/SectionBreak";
-import FloatingSachet from "@/components/FloatingSachet";
 
 // ── Scroll-aware Navbar ────────────────────────────────────────
 function Navbar() {
@@ -88,7 +86,7 @@ function Navbar() {
       >
         {[
           { label: "The Science", href: "#science" },
-          { label: "Pre-Order", href: "#waitlist" },
+          { label: "Shop", href: "#shop" },
         ].map((link) => (
           <a
             key={link.href}
@@ -112,7 +110,7 @@ function Navbar() {
         ))}
 
         <a
-          href="#waitlist"
+          href="#shop"
           data-cursor-hover
           style={{
             padding: "0.55rem 1.4rem",
@@ -135,7 +133,7 @@ function Navbar() {
             (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
           }}
         >
-          Join Waitlist
+          Shop Now
         </a>
       </motion.div>
 
@@ -196,7 +194,7 @@ function Navbar() {
             gap: "1.2rem",
           }}
         >
-          {[{ label: "The Science", href: "#science" }, { label: "Pre-Order", href: "#waitlist" }].map((link) => (
+          {[{ label: "The Science", href: "#science" }, { label: "Shop", href: "#shop" }].map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -272,8 +270,16 @@ function ProductCard({
         willChange: "transform",
       }}
     >
-      {/* 3D sachet canvas area */}
-      <div style={{ height: "260px", borderBottom: "1px solid rgba(255,255,255,0.07)", position: "relative" }}>
+      {/* Product visual area — static image with CSS 3D hover */}
+      <div style={{
+        height: "260px",
+        borderBottom: "1px solid rgba(255,255,255,0.07)",
+        position: "relative",
+        overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}>
         <div
           style={{
             position: "absolute",
@@ -281,7 +287,35 @@ function ProductCard({
             background: `radial-gradient(circle at 50% 60%, ${badgeColor}18 0%, transparent 70%)`,
           }}
         />
-        <FloatingSachet compact textureUrl={textureUrl} />
+        {textureUrl ? (
+          <img
+            src={textureUrl}
+            alt={name}
+            style={{
+              height: "85%",
+              width: "auto",
+              objectFit: "contain",
+              position: "relative",
+              zIndex: 1,
+              filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.5))",
+              transition: "transform 0.4s ease",
+            }}
+          />
+        ) : (
+          <div style={{
+            width: "100px",
+            height: "160px",
+            background: "linear-gradient(135deg, #0a0a0a, #1a1a1a)",
+            border: "1px solid rgba(249,115,22,0.15)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+            zIndex: 1,
+          }}>
+            <span style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: "0.7rem", color: "#f97316", letterSpacing: "0.1em" }}>DC²</span>
+          </div>
+        )}
       </div>
 
       {/* Card body */}
@@ -335,86 +369,265 @@ function ProductCard({
 // ── Main Page ──────────────────────────────────────────────────
 export default function Home() {
   return (
-    <main style={{ minHeight: "100vh", background: "#050505" }}>
+    <main id="main-scroll" style={{ background: "#050505" }}>
       <Navbar />
-      <Hero />
-      <SectionBreak label="The Science" chapterNum="02" />
-      <ScienceSection />
-      <SectionBreak label="Product Lineup" chapterNum="03" />
 
-      {/* ── Product Lineup ──────────────────────────────────── */}
-      <section
-        style={{
-          padding: "clamp(5rem, 10vw, 10rem) clamp(1.5rem, 6vw, 5rem)",
-          borderTop: "1px solid rgba(255,255,255,0.05)",
-        }}
-      >
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem" }}
-          >
-            <span style={{ display: "block", width: "2rem", height: "1px", background: "#eab308" }} />
-            <span style={{ fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#eab308", fontWeight: 600, fontFamily: "var(--font-display)" }}>
-              The Initial Drops
-            </span>
-          </motion.div>
+      {/* Hero */}
+      <div style={{ scrollSnapAlign: "start" }}>
+        <Hero />
+      </div>
 
-          <h2
-            className="text-display"
-            style={{ fontSize: "clamp(2.5rem, 6vw, 6rem)", marginBottom: "clamp(3rem, 6vw, 5rem)" }}
-          >
-            <span className="clip-wrap">
-              <motion.span
-                style={{ display: "block" }}
-                initial={{ y: "110%", opacity: 0 }}
-                whileInView={{ y: "0%", opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-              >
-                Choose your
-              </motion.span>
-            </span>
-            <br />
-            <span className="clip-wrap">
-              <motion.span
-                style={{ display: "block" }}
-                initial={{ y: "110%", opacity: 0 }}
-                whileInView={{ y: "0%", opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="text-gradient"
-              >
-                weapon.
-              </motion.span>
-            </span>
-          </h2>
+      {/* Science */}
+      <div style={{ scrollSnapAlign: "start" }}>
+        <SectionBreak label="The Science" chapterNum="02" />
+        <ScienceSection />
+      </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 22rem), 1fr))", gap: "1rem" }}>
-            <ProductCard
-              num="01"
-              name="Very Berry — Stim-Free"
-              badge="Clean Energy"
-              badgeColor="#f97316"
-              description="The pure performance base. 90g of carbs per serving, loaded with vital electrolytes. Drink it deep into ultra-endurance efforts without the jitters."
-              textureUrl="/images/sachet-stim-free.jpg"
-              delay={0}
-            />
-            <ProductCard
-              num="02"
-              name="Very Berry — Caffeinated"
-              badge="Late-Race Surge"
-              badgeColor="#eab308"
-              description="When you need that late-race surge. Infused with 50mg of caffeine per serving. Designed to lower perceived exertion and reignite mental clarity."
-              delay={0.15}
-            />
+      {/* Product Lineup */}
+      <div style={{ scrollSnapAlign: "start" }}>
+        <SectionBreak label="Product Lineup" chapterNum="03" />
+        <section
+          style={{
+            padding: "clamp(5rem, 10vw, 10rem) clamp(1.5rem, 6vw, 5rem)",
+            borderTop: "1px solid rgba(255,255,255,0.05)",
+          }}
+        >
+          <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem" }}
+            >
+              <span style={{ display: "block", width: "2rem", height: "1px", background: "#eab308" }} />
+              <span style={{ fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#eab308", fontWeight: 600, fontFamily: "var(--font-display)" }}>
+                The Lineup
+              </span>
+            </motion.div>
+
+            <h2
+              className="text-display"
+              style={{ fontSize: "clamp(2.5rem, 6vw, 6rem)", marginBottom: "clamp(3rem, 6vw, 5rem)" }}
+            >
+              <span className="clip-wrap">
+                <motion.span
+                  style={{ display: "block" }}
+                  initial={{ y: "110%", opacity: 0 }}
+                  whileInView={{ y: "0%", opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  Choose your
+                </motion.span>
+              </span>
+              <br />
+              <span className="clip-wrap">
+                <motion.span
+                  style={{ display: "block" }}
+                  initial={{ y: "110%", opacity: 0 }}
+                  whileInView={{ y: "0%", opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-gradient"
+                >
+                  weapon.
+                </motion.span>
+              </span>
+            </h2>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 22rem), 1fr))", gap: "1rem" }}>
+              <ProductCard
+                num="01"
+                name="Very Berry — Stim-Free"
+                badge="Clean Energy"
+                badgeColor="#f97316"
+                description="The pure performance base. 90g of carbs per serving, loaded with vital electrolytes. Drink it deep into ultra-endurance efforts without the jitters."
+                textureUrl="/images/sachet-stim-free.jpg"
+                delay={0}
+              />
+              <ProductCard
+                num="02"
+                name="Very Berry — Caffeinated"
+                badge="Late-Race Surge"
+                badgeColor="#eab308"
+                description="When you need that late-race surge. Infused with 50mg of caffeine per serving. Designed to lower perceived exertion and reignite mental clarity."
+                delay={0.15}
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      <WaitlistForm />
+      {/* Shop CTA */}
+      <div style={{ scrollSnapAlign: "start" }}>
+        <section
+          id="shop"
+          className="relative w-full overflow-hidden"
+          style={{
+            background: "#050505",
+            padding: "clamp(5rem, 12vw, 12rem) clamp(1.5rem, 6vw, 5rem)",
+            minHeight: "80vh",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          {/* Background glow */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              top: "40%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "700px",
+              height: "700px",
+              background: "radial-gradient(circle, rgba(249,115,22,0.07) 0%, transparent 70%)",
+              pointerEvents: "none",
+            }}
+          />
+
+          <div className="relative z-10 max-w-4xl mx-auto" style={{ textAlign: "center" }}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              style={{ display: "flex", alignItems: "center", gap: "1rem", justifyContent: "center", marginBottom: "1.5rem" }}
+            >
+              <span style={{ display: "block", width: "2rem", height: "1px", background: "#f97316" }} />
+              <span style={{ fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#f97316", fontWeight: 600 }}>
+                Shop
+              </span>
+              <span style={{ display: "block", width: "2rem", height: "1px", background: "#f97316" }} />
+            </motion.div>
+
+            <h2
+              className="text-display"
+              style={{ fontSize: "clamp(2.8rem, 7vw, 7rem)", marginBottom: "1.5rem" }}
+            >
+              <span className="clip-wrap">
+                <motion.span
+                  style={{ display: "block" }}
+                  initial={{ y: "110%", opacity: 0 }}
+                  whileInView={{ y: "0%", opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  Fuel Up.
+                </motion.span>
+              </span>
+              <span className="clip-wrap">
+                <motion.span
+                  style={{ display: "block" }}
+                  initial={{ y: "110%", opacity: 0 }}
+                  whileInView={{ y: "0%", opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-gradient"
+                >
+                  Race Hard.
+                </motion.span>
+              </span>
+            </h2>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              style={{ color: "rgba(240,236,228,0.4)", fontSize: "0.95rem", lineHeight: 1.8, maxWidth: "42ch", margin: "0 auto 3rem" }}
+            >
+              Premium endurance fuel, locally made, at a fraction of the import price. Shipping nationwide via courier — or collect locally for free.
+            </motion.p>
+
+            {/* Quick product highlights */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+                gap: "1rem",
+                marginBottom: "3rem",
+                maxWidth: "600px",
+                margin: "0 auto 3rem",
+              }}
+            >
+              {[
+                { label: "Stim-Free", price: "From R25", color: "#f97316" },
+                { label: "Caffeinated", price: "From R30", color: "#eab308" },
+              ].map((product, i) => (
+                <div
+                  key={i}
+                  style={{
+                    padding: "1.5rem",
+                    border: `1px solid ${product.color}30`,
+                    background: `${product.color}08`,
+                    textAlign: "center",
+                  }}
+                >
+                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "1rem", color: "#f0ece4", marginBottom: "0.3rem" }}>
+                    {product.label}
+                  </div>
+                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: "1.2rem", color: product.color }}>
+                    {product.price}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}
+            >
+              <a
+                href="#shop"
+                data-cursor-hover
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.6rem",
+                  padding: "1rem 3rem",
+                  background: "#f97316",
+                  color: "#000",
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 900,
+                  fontSize: "0.85rem",
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  textDecoration: "none",
+                  transition: "background 0.2s, transform 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "#eab308";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "#f97316";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                }}
+              >
+                Shop Now
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+              <div style={{ display: "flex", gap: "2rem", marginTop: "0.5rem" }}>
+                <span style={{ fontSize: "0.7rem", color: "rgba(240,236,228,0.3)", letterSpacing: "0.1em" }}>
+                  🚚 Nationwide Delivery
+                </span>
+                <span style={{ fontSize: "0.7rem", color: "rgba(240,236,228,0.3)", letterSpacing: "0.1em" }}>
+                  📍 Local Pickup Free
+                </span>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      </div>
 
       {/* ── Footer ──────────────────────────────────────────── */}
       <footer
