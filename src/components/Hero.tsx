@@ -152,7 +152,7 @@ export default function Hero() {
       {/* ── Sachet — right side, CSS 3D parallax ──────────────── */}
       <motion.div
         style={{ y: sachetY, scale: sachetScale }}
-        className="absolute right-0 top-0 w-full md:w-[58%] h-full flex items-center justify-center z-0"
+        className="absolute right-0 top-[15%] md:top-0 w-full md:w-[58%] h-[85%] md:h-full flex items-center justify-center z-0 opacity-40 md:opacity-100"
         aria-hidden="true"
       >
         {/* Floating decorative dots behind sachet */}
@@ -243,7 +243,7 @@ export default function Hero() {
               src="/images/sachet-front.jpg"
               alt="DualCarb Endurance — Cotton Candy, Non-Caffeinated"
               style={{
-                height: "clamp(460px, 60vh, 680px)",
+                height: "clamp(320px, 50vh, 680px)",
                 width: "auto",
                 objectFit: "contain",
                 display: "block",
@@ -302,7 +302,7 @@ export default function Hero() {
         <h1
           className="text-display"
           style={{
-            fontSize: "clamp(3.2rem, 9vw, 11rem)",
+            fontSize: "clamp(2.5rem, 9vw, 11rem)",
             maxWidth: "12ch",
           }}
         >
@@ -426,7 +426,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.6 }}
-          className="flex items-center gap-6 mt-16"
+          className="flex flex-wrap items-center gap-4 md:gap-6 mt-12 md:mt-16"
         >
           {[
             { value: "30g", label: "Per Serving" },
@@ -461,6 +461,7 @@ export default function Hero() {
               </div>
               {i < 3 && (
                 <div
+                  className="hidden md:block"
                   style={{
                     width: "1px",
                     height: "32px",

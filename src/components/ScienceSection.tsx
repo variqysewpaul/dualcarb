@@ -221,9 +221,9 @@ export default function ScienceSection() {
         >
           {/* Left — big stat + performance bars */}
           <div
+            className="border-b md:border-b-0 md:border-r border-white/5"
             style={{
               padding: "clamp(2rem, 5vw, 5rem) clamp(1.5rem, 6vw, 5rem)",
-              borderRight: "1px solid rgba(255,255,255,0.06)",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
