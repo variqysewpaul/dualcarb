@@ -257,22 +257,38 @@ export default function ScienceSection() {
           <div style={{ padding: "clamp(2rem, 5vw, 5rem) clamp(1.5rem, 6vw, 5rem)", display: "flex", flexDirection: "column", gap: "1rem" }}>
             {[
               {
+                icon: <div style={{ position: "relative", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: "20px", height: "20px" }}>
+                    <path d="M12 2L19 6V18L12 22L5 18V6L12 2Z" />
+                    <circle cx="12" cy="12" r="3" />
+                    <circle cx="12" cy="6" r="1.5" />
+                    <circle cx="17" cy="9" r="1.5" />
+                    <circle cx="17" cy="15" r="1.5" />
+                    <circle cx="12" cy="18" r="1.5" />
+                    <circle cx="7" cy="15" r="1.5" />
+                    <circle cx="7" cy="9" r="1.5" />
+                  </svg>
+                </div>,
+                color: "#f97316",
+                heading: "Dual-Carb Absorption",
+                body: "Our precision 2:1 Maltodextrin to Fructose ratio recruits both SGLT1 and GLUT5 transporters, bypassing the 60g/hr bottleneck of standard single-source gels.",
+              },
+              {
                 icon: <Zap size={18} />,
                 color: "#eab308",
-                heading: "SGLT1 + GLUT5",
-                body: "Standard gels saturate the SGLT1 transporter at 60g/hr. Our proprietary dual-carb formula recruits GLUT5, pushing total absorption to ~90g/hr without competition between pathways.",
+                heading: "Fast Energy",
+                body: "Rapid-clearance carbohydrates provide an immediate glycogen surge. Designed for high-intensity efforts where every millisecond of energy delivery counts.",
               },
               {
-                icon: <Activity size={18} />,
+                icon: <div style={{ position: "relative", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: "20px", height: "20px" }}>
+                    <path d="M12 22C12 22 20 18 20 12C20 6 15 2 12 2C9 2 4 6 4 12C4 18 12 22 12 22Z" />
+                    <path d="M9 12L11 14L15 10" />
+                  </svg>
+                </div>,
                 color: "#f97316",
-                heading: "Zero GI Distress",
-                body: "Split absorption channels mean the carbohydrate load clears your stomach significantly faster — eliminating bloating, cramping, and sloshing deep into ultra efforts.",
-              },
-              {
-                icon: <span style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: "1rem" }}>R</span>,
-                color: "#eab308",
-                heading: "Insane Affordability",
-                body: "Premium competitors charge R70–R100 per serving. Direct sourcing and local production bring the exact same elite fueling ratios to just R25–R30 per serving.",
+                heading: "Gentle on Stomach",
+                body: "By splitting the osmotic load across two pathways, we eliminate the 'sloshing' and GI distress common with high-dose glucose gels. Performance without the pain.",
               },
             ].map((card, i) => (
               <motion.div

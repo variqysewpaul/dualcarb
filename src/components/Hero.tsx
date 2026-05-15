@@ -130,6 +130,20 @@ export default function Hero() {
           pointerEvents: "none",
         }}
       />
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "5%",
+          top: "15%",
+          width: "500px",
+          height: "500px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(125,211,252,0.04) 0%, transparent 70%)",
+          filter: "blur(50px)",
+          pointerEvents: "none",
+        }}
+      />
 
       {/* ── Left gradient fade ─────────────────────────────────── */}
       <div

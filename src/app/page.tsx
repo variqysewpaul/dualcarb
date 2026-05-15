@@ -461,7 +461,7 @@ export default function Home() {
                 name="Cotton Candy — Stim-Free"
                 badge="Clean Energy"
                 badgeColor="#f97316"
-                description="The pure performance base. 30g of carbs per sachet, loaded with vital electrolytes. Cotton Candy flavoured. Drink it deep into ultra-endurance efforts without the jitters."
+                description="The pure performance base. 30g of carbs per sachet, loaded with vital electrolytes. Cotton Candy flavoured. Non-caffeinated for clean, sustained endurance."
                 textureUrl="/images/sachet-front.jpg"
                 delay={0}
               />
@@ -594,7 +594,38 @@ export default function Home() {
               <div>
                 <div style={{ fontFamily: "var(--font-display)", fontWeight: 900, fontSize: "0.65rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#f97316", marginBottom: "1rem" }}>What&apos;s Inside</div>
                 <h3 className="text-display" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", marginBottom: "1.2rem" }}>Transparent.<br /><span className="text-gradient">Every gram.</span></h3>
-                <p style={{ color: "rgba(240,236,228,0.4)", lineHeight: 1.8, fontSize: "0.88rem" }}>No hidden ingredients. No proprietary blends you can&apos;t read. Full nutritional information printed on every sachet — because you deserve to know what fuels your body.</p>
+                <p style={{ color: "rgba(240,236,228,0.4)", lineHeight: 1.8, fontSize: "0.88rem", marginBottom: "2rem" }}>No hidden ingredients. No proprietary blends you can&apos;t read. Full nutritional information printed on every sachet — because you deserve to know what fuels your body.</p>
+                
+                {/* Detailed Nutritional Table */}
+                <div style={{ 
+                  background: "rgba(255,255,255,0.02)", 
+                  border: "1px solid rgba(255,255,255,0.05)",
+                  padding: "1.5rem"
+                }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(255,255,255,0.05)", paddingBottom: "0.8rem", marginBottom: "0.8rem" }}>
+                    <span style={{ fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(240,236,228,0.3)" }}>Nutritional Info</span>
+                    <span style={{ fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "#f97316" }}>Per 38g Serving</span>
+                  </div>
+                  {[
+                    { label: "Energy", val: "612 kJ" },
+                    { label: "Protein", val: "0.0 g" },
+                    { label: "Glycaemic Carbohydrate", val: "36 g" },
+                    { label: "Of which total Sugar", val: "13.8 g" },
+                    { label: "Total Sodium", val: "72 mg" },
+                    { label: "Electrolytes (K, Ca, Mg, P)", val: "86 mg" },
+                  ].map((item, idx) => (
+                    <div key={idx} style={{ display: "flex", justifyContent: "space-between", padding: "0.4rem 0", fontSize: "0.8rem" }}>
+                      <span style={{ color: "rgba(240,236,228,0.5)" }}>{item.label}</span>
+                      <span style={{ color: "#f0ece4", fontWeight: 600 }}>{item.val}</span>
+                    </div>
+                  ))}
+                  <div style={{ marginTop: "1.5rem", paddingTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                    <div style={{ fontSize: "0.55rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(240,236,228,0.25)", marginBottom: "0.5rem" }}>Ingredients</div>
+                    <p style={{ fontSize: "0.7rem", color: "rgba(240,236,228,0.4)", lineHeight: 1.5 }}>
+                      Maltodextrin, Fructose, Carb Matrix [Sugar, Maltodextrin], Citric acid, Calcium lactate, Sodium chloride, Disodium phosphate, Monopotassium phosphate, Magnesium sulphate, Flavouring, Trisodium citrate, Sucralose, Acesulfame-K.
+                    </p>
+                  </div>
+                </div>
               </div>
               <div style={{ position: "relative" }}>
                 <div style={{ position: "absolute", inset: "-20px", background: "radial-gradient(circle at center, rgba(249,115,22,0.08) 0%, transparent 70%)", filter: "blur(30px)" }} />
