@@ -170,7 +170,7 @@ export default function ScienceSection() {
         {/* ── Header ─────────────────────────────────────────── */}
         <div
           style={{
-            padding: "0.5rem clamp(1.5rem, 6vw, 5rem) 0",
+            padding: "0 clamp(1.5rem, 6vw, 5rem) 0",
           }}
         >
           <motion.div

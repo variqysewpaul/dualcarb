@@ -92,6 +92,7 @@ function Navbar() {
             key={link.href}
             href={link.href}
             data-cursor-hover
+            className="hidden md:flex"
             style={{
               fontSize: "0.72rem",
               letterSpacing: "0.18em",
