@@ -87,7 +87,6 @@ function Navbar() {
       >
         {[
           { label: "The Science", href: "#science" },
-          { label: "Order", href: "#contact" },
         ].map((link) => (
           <a
             key={link.href}
