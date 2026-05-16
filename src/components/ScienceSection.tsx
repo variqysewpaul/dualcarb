@@ -244,13 +244,13 @@ export default function ScienceSection() {
                   maxWidth: "34ch",
                 }}
               >
-                By engaging two separate intestinal transporters simultaneously, we bypass the single-pathway bottleneck that caps standard gels at 60g/hr.
+                By engaging two separate intestinal transporters simultaneously, we optimize absorption efficiency compared to standard single-pathway gels.
               </p>
             </motion.div>
 
-            <BarStat label="Standard Glucose Gel" value="60g/hr" percent={67} color="rgba(255,255,255,0.15)" delay={0.1} />
-            <BarStat label="DualCarb Endurance" value="~90g/hr" percent={100} color="#f97316" delay={0.25} />
-            <BarStat label="Competitor Premium (Maurten)" value="~60g/hr" percent={67} color="rgba(255,255,255,0.1)" delay={0.4} />
+            <BarStat label="Standard Glucose Gel" value="Baseline" percent={67} color="rgba(255,255,255,0.15)" delay={0.1} />
+            <BarStat label="DualCarb Endurance" value="Optimized" percent={100} color="#f97316" delay={0.25} />
+            <BarStat label="Competitor Premium" value="Baseline" percent={67} color="rgba(255,255,255,0.1)" delay={0.4} />
           </div>
 
           {/* Right — feature cards */}
@@ -271,7 +271,7 @@ export default function ScienceSection() {
                 </div>,
                 color: "#f97316",
                 heading: "Dual-Carb Absorption",
-                body: "Our precision 2:1 Maltodextrin to Fructose ratio recruits both SGLT1 and GLUT5 transporters, bypassing the 60g/hr bottleneck of standard single-source gels.",
+                body: "Our precision dual-carb formula recruits both SGLT1 and GLUT5 transporters, improving intake efficiency compared to standard single-source gels.",
               },
               {
                 icon: <Zap size={18} />,
@@ -288,7 +288,7 @@ export default function ScienceSection() {
                 </div>,
                 color: "#f97316",
                 heading: "Gentle on Stomach",
-                body: "By splitting the osmotic load across two pathways, we eliminate the 'sloshing' and GI distress common with high-dose glucose gels. Performance without the pain.",
+                body: "By splitting the osmotic load across two pathways, we minimize the GI distress often associated with high-concentration glucose gels. Performance without the pain.",
               },
             ].map((card, i) => (
               <motion.div
@@ -404,10 +404,10 @@ export default function ScienceSection() {
               </thead>
               <tbody>
                 {[
-                  { brand: "Maurten Gel 100", carb: "25g", system: "Dual carb hydrogel", price: "R70–R100", highlight: false },
-                  { brand: "GU Energy Gel", carb: "23g", system: "Glucose + Fructose", price: "R45–R60", highlight: false },
-                  { brand: "SiS GO Gel", carb: "22g", system: "Isotonic Maltodextrin", price: "R40–R55", highlight: false },
-                  { brand: "DualCarb Endurance", carb: "30g", system: "Proprietary Dual-Carb Blend", price: "R25–R30", highlight: true },
+                  { brand: "Standard Hydrogel", carb: "Typical", system: "Single Source", price: "Premium", highlight: false },
+                  { brand: "Standard Glucose", carb: "Typical", system: "Basic Glucose", price: "Entry", highlight: false },
+                  { brand: "Standard Isotonic", carb: "Typical", system: "Maltodextrin", price: "Mid", highlight: false },
+                  { brand: "DualCarb Endurance", carb: "Optimized", system: "Proprietary Blend", price: "Competitive", highlight: true },
                 ].map((row, i) => (
                   <tr
                     key={i}

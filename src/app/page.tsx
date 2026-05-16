@@ -113,7 +113,7 @@ function Navbar() {
         <a
           href="#contact"
           data-cursor-hover
-          className="hidden sm:flex"
+          className="hidden md:flex"
           style={{
             padding: "0.5rem 1.2rem",
             background: "#f97316",

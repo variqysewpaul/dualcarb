@@ -166,7 +166,7 @@ export default function Hero() {
       {/* ── Sachet — right side, CSS 3D parallax ──────────────── */}
       <motion.div
         style={{ y: sachetY, scale: sachetScale }}
-        className="absolute right-0 top-[15%] md:top-0 w-full md:w-[58%] h-[85%] md:h-full flex items-center justify-center z-0 opacity-40 md:opacity-100"
+        className="absolute right-[-15%] md:right-0 top-[15%] md:top-0 w-full md:w-[58%] h-[85%] md:h-full flex items-center justify-center z-0 opacity-25 md:opacity-100"
         aria-hidden="true"
       >
         {/* Floating decorative dots behind sachet */}
@@ -257,7 +257,7 @@ export default function Hero() {
               src="/images/sachet-front.jpg"
               alt="DualCarb Endurance — Cotton Candy, Non-Caffeinated"
               style={{
-                height: "clamp(320px, 50vh, 680px)",
+                height: "clamp(240px, 45vh, 680px)",
                 width: "auto",
                 objectFit: "contain",
                 display: "block",
