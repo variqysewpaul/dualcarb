@@ -25,7 +25,7 @@ function Navbar() {
         left: 0,
         width: "100%",
         zIndex: 1000,
-        padding: "1.25rem clamp(1.5rem, 5vw, 3.5rem)",
+        padding: "1.25rem clamp(1rem, 3vw, 3.5rem)",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
@@ -48,11 +48,12 @@ function Navbar() {
           gap: "0.3rem",
           fontFamily: "var(--font-outfit)",
           fontWeight: 900,
-          fontSize: "1.15rem",
-          letterSpacing: "-0.03em",
+          fontSize: "1.1rem",
+          letterSpacing: "-0.02em",
           textDecoration: "none",
           color: "#f0ece4",
           textTransform: "uppercase",
+          marginLeft: "clamp(0rem, 2vw, 1rem)",
         }}
       >
         <span>DUAL</span>
@@ -81,7 +82,7 @@ function Navbar() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        style={{ display: "flex", alignItems: "center", gap: "2.5rem" }}
+        style={{ display: "flex", alignItems: "center", gap: "clamp(1rem, 2vw, 2.5rem)" }}
         className="hidden md:flex"
       >
         {[
@@ -112,17 +113,19 @@ function Navbar() {
         <a
           href="#contact"
           data-cursor-hover
+          className="hidden sm:flex"
           style={{
-            padding: "0.55rem 1.4rem",
+            padding: "0.5rem 1.2rem",
             background: "#f97316",
             color: "#000",
             fontFamily: "var(--font-display)",
             fontWeight: 800,
-            fontSize: "0.72rem",
-            letterSpacing: "0.16em",
+            fontSize: "0.7rem",
+            letterSpacing: "0.14em",
             textTransform: "uppercase",
             textDecoration: "none",
             transition: "background 0.2s, transform 0.2s",
+            flexShrink: 0,
           }}
           onMouseEnter={(e) => {
             (e.currentTarget as HTMLElement).style.background = "#eab308";
@@ -386,6 +389,129 @@ function ProductCard({
   );
 }
 
+// ── Contact Actions ───────────────────────────────────────────
+function ContactActions({ 
+  phone, 
+  email, 
+  name, 
+  color 
+}: { 
+  phone: string; 
+  email?: string | null; 
+  name: string; 
+  color: string 
+}) {
+  const cleanPhone = phone.replace(/\s/g, "").replace(/^0/, "27");
+  const firstName = name.split(" ")[0];
+  const waMessage = encodeURIComponent(`Hi ${firstName}, I'd like to order _____ sachets of DualCarb. Please let me know the total and banking details.`);
+  const mailSubject = encodeURIComponent("DualCarb Order Inquiry");
+  const mailBody = encodeURIComponent(`Hi ${firstName},\n\nI'd like to order _____ sachets of DualCarb.\n\nPlease let me know the next steps.\n\nThank you!`);
+
+  return (
+    <div style={{ display: "flex", gap: "0.8rem", marginTop: "1.2rem" }}>
+      {/* Call */}
+      <a
+        href={`tel:${phone.replace(/\s/g, "")}`}
+        data-cursor-hover
+        style={{
+          width: "42px",
+          height: "42px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "rgba(255,255,255,0.03)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          color: "rgba(240,236,228,0.6)",
+          transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = `${color}15`;
+          e.currentTarget.style.borderColor = color;
+          e.currentTarget.style.color = color;
+          e.currentTarget.style.transform = "translateY(-2px)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = "rgba(255,255,255,0.03)";
+          e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+          e.currentTarget.style.color = "rgba(240,236,228,0.6)";
+          e.currentTarget.style.transform = "translateY(0)";
+        }}
+        title="Call Now"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+      </a>
+
+      {/* WhatsApp */}
+      <a
+        href={`https://wa.me/${cleanPhone}?text=${waMessage}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cursor-hover
+        style={{
+          width: "42px",
+          height: "42px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "rgba(255,255,255,0.03)",
+          border: "1px solid rgba(255,255,255,0.08)",
+          color: "rgba(240,236,228,0.6)",
+          transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = "#25D36615";
+          e.currentTarget.style.borderColor = "#25D366";
+          e.currentTarget.style.color = "#25D366";
+          e.currentTarget.style.transform = "translateY(-2px)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = "rgba(255,255,255,0.03)";
+          e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+          e.currentTarget.style.color = "rgba(240,236,228,0.6)";
+          e.currentTarget.style.transform = "translateY(0)";
+        }}
+        title="WhatsApp Message"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-7.6 8.38 8.38 0 0 1 3.8.9L21 3z"></path></svg>
+      </a>
+
+      {/* Email */}
+      {email && (
+        <a
+          href={`mailto:${email}?subject=${mailSubject}&body=${mailBody}`}
+          data-cursor-hover
+          style={{
+            width: "42px",
+            height: "42px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            color: "rgba(240,236,228,0.6)",
+            transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "#EA433515";
+            e.currentTarget.style.borderColor = "#EA4335";
+            e.currentTarget.style.color = "#EA4335";
+            e.currentTarget.style.transform = "translateY(-2px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(255,255,255,0.03)";
+            e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+            e.currentTarget.style.color = "rgba(240,236,228,0.6)";
+            e.currentTarget.style.transform = "translateY(0)";
+          }}
+          title="Email Order"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      )}
+    </div>
+  );
+}
+
 // ── Main Page ──────────────────────────────────────────────────
 export default function Home() {
   return (
@@ -526,7 +652,7 @@ export default function Home() {
                   region: "DualCarb Newcastle",
                   color: "#eab308",
                   contacts: [
-                    { name: "Vino Sewpaul", phone: "083 206 1260", email: "vinosewpaul@gmail.com" },
+                    { name: "Vivek Sewpaul", phone: "082 572 4344", email: "vinosewpaul@gmail.com" },
                     { name: "Nibha Sewpaul", phone: "081 020 6635", email: null },
                   ],
                 },
@@ -561,22 +687,28 @@ export default function Home() {
                   </div>
 
                   {card.contacts.map((c, j) => (
-                    <div key={j} style={{ marginBottom: j < card.contacts.length - 1 ? "1.5rem" : 0, paddingBottom: j < card.contacts.length - 1 ? "1.5rem" : 0, borderBottom: j < card.contacts.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
+                    <div key={j} style={{ marginBottom: j < card.contacts.length - 1 ? "2.5rem" : 0, paddingBottom: j < card.contacts.length - 1 ? "2.5rem" : 0, borderBottom: j < card.contacts.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none" }}>
                       <div style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "1.1rem", color: "#f0ece4", marginBottom: "0.8rem" }}>{c.name}</div>
-                      <a href={`tel:${c.phone.replace(/\s/g, "")}`} data-cursor-hover style={{ display: "flex", alignItems: "center", gap: "0.6rem", color: "rgba(240,236,228,0.5)", textDecoration: "none", fontSize: "0.88rem", marginBottom: "0.5rem", transition: "color 0.2s" }}
-                        onMouseEnter={(e) => (e.currentTarget.style.color = card.color)}
-                        onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,236,228,0.5)")}>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-                        {c.phone}
-                      </a>
-                      {c.email && (
-                        <a href={`mailto:${c.email}`} data-cursor-hover style={{ display: "flex", alignItems: "center", gap: "0.6rem", color: "rgba(240,236,228,0.5)", textDecoration: "none", fontSize: "0.88rem", transition: "color 0.2s" }}
-                          onMouseEnter={(e) => (e.currentTarget.style.color = card.color)}
-                          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(240,236,228,0.5)")}>
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                          {c.email}
-                        </a>
-                      )}
+                      
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", color: "rgba(240,236,228,0.4)", fontSize: "0.88rem" }}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+                          {c.phone}
+                        </div>
+                        {c.email && (
+                          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", color: "rgba(240,236,228,0.4)", fontSize: "0.88rem" }}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            {c.email}
+                          </div>
+                        )}
+                      </div>
+
+                      <ContactActions 
+                        name={c.name} 
+                        phone={c.phone} 
+                        email={c.email} 
+                        color={card.color} 
+                      />
                     </div>
                   ))}
                 </motion.div>

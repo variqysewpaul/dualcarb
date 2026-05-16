@@ -170,7 +170,7 @@ export default function ScienceSection() {
         {/* ── Header ─────────────────────────────────────────── */}
         <div
           style={{
-            padding: "clamp(4rem, 10vw, 9rem) clamp(1.5rem, 6vw, 5rem) 0",
+            padding: "clamp(2rem, 5vw, 5rem) clamp(1.5rem, 6vw, 5rem) 0",
           }}
         >
           <motion.div
@@ -216,7 +216,7 @@ export default function ScienceSection() {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 28rem), 1fr))",
             gap: "0",
-            padding: "clamp(3rem, 6vw, 6rem) 0",
+            padding: "clamp(1.5rem, 4vw, 4rem) 0",
           }}
         >
           {/* Left — big stat + performance bars */}

@@ -57,7 +57,7 @@ export default function SectionBreak({
           display: "flex",
           alignItems: "center",
           gap: "1.5rem",
-          padding: "4rem 0",
+          padding: "3rem 0 1.5rem 0",
         }}
       >
         {/* Left rule */}

@@ -285,7 +285,7 @@ export default function Hero() {
       {/* ── Main text content ────────────────────────────────────── */}
       <motion.div
         style={{ y: textY }}
-        className="relative z-10 w-full px-6 md:px-14 lg:px-20 pt-32 pb-24 md:pb-16 flex flex-col justify-center min-h-screen"
+        className="relative z-10 w-full px-6 md:px-14 lg:px-20 pt-[clamp(8rem,15vh,12rem)] pb-24 md:pb-16 flex flex-col justify-start md:justify-center min-h-screen"
       >
         {/* Pre-label */}
         <motion.div
@@ -316,8 +316,10 @@ export default function Hero() {
         <h1
           className="text-display"
           style={{
-            fontSize: "clamp(2.5rem, 9vw, 11rem)",
+            fontSize: "clamp(2.2rem, 8vw, 9.5rem)",
             maxWidth: "12ch",
+            lineHeight: 1.05,
+            marginTop: "clamp(2rem, 8vh, 6rem)",
           }}
         >
           <div>
